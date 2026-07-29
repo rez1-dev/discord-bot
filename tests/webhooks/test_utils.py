@@ -64,10 +64,14 @@ def test_footer_dict() -> None:
             "[#8268 (comment)](https://github.com/ghostty-org/ghostty/discussions/8268#discussioncomment-14492426)",
         ),
         (
-            "two months ago (https://github.com/ghostty-org/ghostty/pull/8912"
-            "#issuecomment-4002278186), and there",
-            "two months ago ([#8912 (comment)](https://github.com/ghostty-org/ghostty"
-            "/pull/8912#issuecomment-4002278186)), and there",
+            (
+                "two months ago (https://github.com/ghostty-org/ghostty/pull/8912"
+                "#issuecomment-4002278186), and there"
+            ),
+            (
+                "two months ago ([#8912 (comment)](https://github.com/ghostty-org/ghostty"
+                "/pull/8912#issuecomment-4002278186)), and there"
+            ),
         ),
         (
             "see [#8912](https://github.com/ghostty-org/ghostty/pull/8912)",

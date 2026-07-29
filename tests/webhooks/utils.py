@@ -38,7 +38,7 @@ def make_user(
     )
 
 
-def make_pr(
+def make_pr(  # noqa: PLR0917
     number: int = 1,
     title: str = "Test PR",
     state: str = "open",

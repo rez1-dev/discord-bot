@@ -87,6 +87,7 @@ ignore = [
   "PLR2004",
   "TD003",
   "TRY400",
+  "CPY001",
 ]
 logger-objects = ["loguru.logger"] # technically false but it works well enough
 mccabe.max-complexity = 20

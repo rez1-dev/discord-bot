@@ -58,22 +58,30 @@ def test_is_vouch_pr(
     ("body", "entity_id", "comment_id", "vouchee"),
     [
         (
-            "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
-            "issues/9999#issuecomment-3210987654) from @barfoo.\n\nVouch: @foobar",
+            (
+                "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
+                "issues/9999#issuecomment-3210987654) from @barfoo.\n\nVouch: @foobar"
+            ),
             9999,
             3210987654,
             "foobar",
         ),
         (
-            "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
-            "pull/123#issuecomment-9876543210) from @reviewer.\n\nVouch: @contributor",
+            (
+                "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
+                "pull/123#issuecomment-9876543210) from @reviewer.\n\n"
+                "Vouch: @contributor"
+            ),
             123,
             9876543210,
             "contributor",
         ),
         (
-            "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
-            "discussions/456#discussioncomment-12345) from @user.\n\nVouch: @vouchee",
+            (
+                "Triggered by [comment](https://github.com/ghostty-org/ghostty/"
+                "discussions/456#discussioncomment-12345) from @user.\n\n"
+                "Vouch: @vouchee"
+            ),
             456,
             12345,
             "vouchee",
