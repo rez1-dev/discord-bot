@@ -12,7 +12,7 @@ __all__ = (
 
 
 def handle_error(error: BaseException) -> None:
-    logger.error(error)
+    logger.opt(exception=error).error(error)
     for note in getattr(error, "__notes__", []):
         logger.error(note)
     if isinstance(error, dc.app_commands.CommandInvokeError):
