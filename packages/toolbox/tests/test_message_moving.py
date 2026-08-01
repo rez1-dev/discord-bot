@@ -154,36 +154,48 @@ def test_find_snowflake(
     ("content", "result"),
     [
         (
-            "a\n-# Authored by <@665120188047556609> • "
-            "Moved from <#1281624935558807678> by <@665120188047556609>",
+            (
+                "a\n-# Authored by <@665120188047556609> • "
+                "Moved from <#1281624935558807678> by <@665120188047556609>"
+            ),
             665120188047556609,
         ),
         (
-            "Scanned 1 open posts in <#1305317376346296321>.\n"
-            "-# Authored by <@1323096214735945738> on <t:1744888255> • "
-            "Moved from <#1324364626225266758> by <@665120188047556609>",
+            (
+                "Scanned 1 open posts in <#1305317376346296321>.\n"
+                "-# Authored by <@1323096214735945738> on <t:1744888255> • "
+                "Moved from <#1324364626225266758> by <@665120188047556609>"
+            ),
             1323096214735945738,
         ),
         (
-            "edit\n-# Authored by <@665120188047556609> on <t:1745489008> "
-            "(edited at <t:1745927179:t>) • Moved from <#1281624935558807678> "
-            "by <@665120188047556609>",
+            (
+                "edit\n-# Authored by <@665120188047556609> on <t:1745489008> "
+                "(edited at <t:1745927179:t>) • Moved from <#1281624935558807678> "
+                "by <@665120188047556609>"
+            ),
             665120188047556609,
         ),
         ("a\n -# Moved from <#1281624935558807678> by <@665120188047556609>", None),
         (
-            "Scanned 0 open posts in <#1305317376346296321>.\n-# <t:1744158570> • "
-            "Moved from <#1324364626225266758> by <@665120188047556609>",
+            (
+                "Scanned 0 open posts in <#1305317376346296321>.\n-# <t:1744158570> • "
+                "Moved from <#1324364626225266758> by <@665120188047556609>"
+            ),
             None,
         ),
         (
-            "-# (content attached)\n-# Authored by <@665120188047556609> • "
-            "Moved from <#1281624935558807678> by <@665120188047556609>",
+            (
+                "-# (content attached)\n-# Authored by <@665120188047556609> • "
+                "Moved from <#1281624935558807678> by <@665120188047556609>"
+            ),
             665120188047556609,
         ),
         (
-            "-# (content attached)\n-# Moved from "
-            "<#1281624935558807678> by <@665120188047556609>",
+            (
+                "-# (content attached)\n-# Moved from "
+                "<#1281624935558807678> by <@665120188047556609>"
+            ),
             None,
         ),
         ("test", None),
@@ -195,8 +207,10 @@ def test_find_snowflake(
         ("-#<@665120188047556609>", None),
         ("<@665120188047556609 go to <#1294988140645453834>", None),
         (
-            "-# <@252206453878685697> what are you doing in <#1337443701403815999> 👀\n"
-            "-# it's not ||[redacted]|| is it...?",
+            (
+                "-# <@252206453878685697> what are you doing in <#1337443701403815999> "
+                "👀\n-# it's not ||[redacted]|| is it...?"
+            ),
             None,
         ),
         # False positives that are not going to be handled.
@@ -263,9 +277,11 @@ def test_get_moved_message_author_id(content: str, result: int | None) -> None:
             1,
             999,
             False,
-            f"[a](<{CDN_EMOJI_LINK}1.webp?size=48&name=a>) "
-            f"[b](<{CDN_EMOJI_LINK}2.webp?size=48&name=b>) "
-            f"[c](<{CDN_EMOJI_LINK}3.webp?size=48&name=c>)",
+            (
+                f"[a](<{CDN_EMOJI_LINK}1.webp?size=48&name=a>) "
+                f"[b](<{CDN_EMOJI_LINK}2.webp?size=48&name=b>) "
+                f"[c](<{CDN_EMOJI_LINK}3.webp?size=48&name=c>)"
+            ),
         ),
         ("no emojis here", None, None, False, "no emojis here"),
         ("", None, None, False, ""),
@@ -415,7 +431,7 @@ def test_split_subtext_update_no_executor() -> None:
     assert split._subtext == original_subtext
 
 
-def _make_message_data(
+def _make_message_data(  # noqa: PLR0917
     author: dc.User | None = None,
     channel: dc.TextChannel | None = None,
     reactions: list[dc.Reaction] | None = None,
@@ -578,8 +594,10 @@ def test_subtext_init_timestamp_with_edited() -> None:
             "Skipped 1",
             "Unable to attach closed poll",
             "Moved from <#1> by <@2>",
-            "-# 👍\n-# Authored by <@1> on <t:123> • Skipped 1 • Unable to attach "
-            "closed poll • Moved from <#1> by <@2>",
+            (
+                "-# 👍\n-# Authored by <@1> on <t:123> • Skipped 1 • Unable to attach "
+                "closed poll • Moved from <#1> by <@2>"
+            ),
         ),
         (
             [],
@@ -592,7 +610,7 @@ def test_subtext_init_timestamp_with_edited() -> None:
         ),
     ],
 )
-def test_subtext_format(
+def test_subtext_format(  # noqa: PLR0917
     reactions: list[str],
     author: str,
     timestamp: str,

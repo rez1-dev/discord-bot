@@ -556,72 +556,94 @@ def test_format_review_request_summary_simple(
                 requests={dummy_user(name="")},
                 accidental_requests={dummy_user(name="")},
             ),
-            "**Requested review** from [``](<>)\n\n"
-            "**Accidentally requested review** from [``](<>)",
+            (
+                "**Requested review** from [``](<>)\n\n"
+                "**Accidentally requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
                 accidental_requests={GitHubTeam(name="")}, unknown_requests=44
             ),
-            "**Requested review** from 44 unknown users\n\n"
-            "**Accidentally requested review** from the `` team",
+            (
+                "**Requested review** from 44 unknown users\n\n"
+                "**Accidentally requested review** from the `` team"
+            ),
         ),
         (
             ReviewRequestSummary(
                 removals={GitHubTeam(name="")},
                 accidental_requests={dummy_user(name="")},
             ),
-            "**Removed review request** from the `` team\n\n"
-            "**Accidentally requested review** from [``](<>)",
+            (
+                "**Removed review request** from the `` team\n\n"
+                "**Accidentally requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
                 requests={dummy_user(name="")}, rerequests={GitHubTeam(name="")}
             ),
-            "**Requested review** from [``](<>)\n\n"
-            "**Removed, then requested review** from the `` team",
+            (
+                "**Requested review** from [``](<>)\n\n"
+                "**Removed, then requested review** from the `` team"
+            ),
         ),
         (
             ReviewRequestSummary(
                 removals={dummy_user(name="")}, rerequests={dummy_user(name="")}
             ),
-            "**Removed review request** from [``](<>)\n\n"
-            "**Removed, then requested review** from [``](<>)",
+            (
+                "**Removed review request** from [``](<>)\n\n"
+                "**Removed, then requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(rerequests={dummy_user(name="")}, unknown_removals=17),
-            "**Removed review request** from 17 unknown users\n\n"
-            "**Removed, then requested review** from [``](<>)",
+            (
+                "**Removed review request** from 17 unknown users\n\n"
+                "**Removed, then requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
                 requests={dummy_user(name="")}, removals={dummy_user(name="")}
             ),
-            "**Requested review** from [``](<>)\n\n"
-            "**Removed review request** from [``](<>)",
+            (
+                "**Requested review** from [``](<>)\n\n"
+                "**Removed review request** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(removals={GitHubTeam(name="")}, unknown_requests=678),
-            "**Requested review** from 678 unknown users\n\n"
-            "**Removed review request** from the `` team",
+            (
+                "**Requested review** from 678 unknown users\n\n"
+                "**Removed review request** from the `` team"
+            ),
         ),
         (
             ReviewRequestSummary(requests={dummy_user(name="")}, unknown_removals=-3),
-            "**Requested review** from [``](<>)\n\n"
-            "**Removed review request** from -3 unknown users",
+            (
+                "**Requested review** from [``](<>)\n\n"
+                "**Removed review request** from -3 unknown users"
+            ),
         ),
         (
             ReviewRequestSummary(unknown_requests=12, unknown_removals=55),
-            "**Requested review** from 12 unknown users\n\n"
-            "**Removed review request** from 55 unknown users",
+            (
+                "**Requested review** from 12 unknown users\n\n"
+                "**Removed review request** from 55 unknown users"
+            ),
         ),
         (
             ReviewRequestSummary(
                 accidental_requests={GitHubTeam(name="")},
                 rerequests={dummy_user(name="")},
             ),
-            "**Accidentally requested review** from the `` team\n\n"
-            "**Removed, then requested review** from [``](<>)",
+            (
+                "**Accidentally requested review** from the `` team\n\n"
+                "**Removed, then requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
@@ -629,9 +651,11 @@ def test_format_review_request_summary_simple(
                 removals={GitHubTeam(name="")},
                 accidental_requests={dummy_user(name="")},
             ),
-            "**Requested review** from the `` team\n\n"
-            "**Removed review request** from the `` team\n\n"
-            "**Accidentally requested review** from [``](<>)",
+            (
+                "**Requested review** from the `` team\n\n"
+                "**Removed review request** from the `` team\n\n"
+                "**Accidentally requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
@@ -640,10 +664,12 @@ def test_format_review_request_summary_simple(
                 rerequests={dummy_user(name="")},
                 unknown_requests=16,
             ),
-            "**Requested review** from 16 unknown users\n\n"
-            "**Removed review request** from [``](<>)\n\n"
-            "**Accidentally requested review** from the `` team\n\n"
-            "**Removed, then requested review** from [``](<>)",
+            (
+                "**Requested review** from 16 unknown users\n\n"
+                "**Removed review request** from [``](<>)\n\n"
+                "**Accidentally requested review** from the `` team\n\n"
+                "**Removed, then requested review** from [``](<>)"
+            ),
         ),
         (
             ReviewRequestSummary(
@@ -657,11 +683,13 @@ def test_format_review_request_summary_simple(
                 unknown_requests=13,
                 unknown_removals=4,
             ),
-            "**Requested review** from:\n- [`a`](<>)\n- [`b`](<>)"
-            "\n- 13 unknown users\n\n"
-            "**Removed review request** from:\n- [`a`](<>)\n- the `b` team"
-            "\n- [`c`](<>)\n- 4 unknown users\n\n"
-            "**Removed, then requested review** from the `g` team",
+            (
+                "**Requested review** from:\n- [`a`](<>)\n- [`b`](<>)"
+                "\n- 13 unknown users\n\n"
+                "**Removed review request** from:\n- [`a`](<>)\n- the `b` team"
+                "\n- [`c`](<>)\n- 4 unknown users\n\n"
+                "**Removed, then requested review** from the `g` team"
+            ),
         ),
         (
             ReviewRequestSummary(
@@ -669,9 +697,11 @@ def test_format_review_request_summary_simple(
                 accidental_requests={GitHubTeam(name="c")},
                 unknown_requests=44,
             ),
-            "**Requested review** from 44 unknown users\n\n"
-            "**Removed review request** from:\n- the `a` team\n- [`b`](<>)\n\n"
-            "**Accidentally requested review** from the `c` team",
+            (
+                "**Requested review** from 44 unknown users\n\n"
+                "**Removed review request** from:\n- the `a` team\n- [`b`](<>)\n\n"
+                "**Accidentally requested review** from the `c` team"
+            ),
         ),
         (
             ReviewRequestSummary(
@@ -685,11 +715,14 @@ def test_format_review_request_summary_simple(
                 rerequests={GitHubTeam(name="r"), GitHubTeam(name="q")},
                 unknown_requests=21,
             ),
-            "**Requested review** from:\n- [`a`](<>)\n- the `b` team\n- the `c` team"
-            "\n- 21 unknown users\n\n"
-            "**Removed review request** from:\n- [`a`](<>)\n- [`b`](<>)\n\n"
-            "**Accidentally requested review** from:\n- [`d`](<>)\n- the `e` team\n\n"
-            "**Removed, then requested review** from:\n- the `q` team\n- the `r` team",
+            (
+                "**Requested review** from:\n- [`a`](<>)\n- the `b` team\n"
+                "- the `c` team\n- 21 unknown users\n\n"
+                "**Removed review request** from:\n- [`a`](<>)\n- [`b`](<>)\n\n"
+                "**Accidentally requested review** from:\n- [`d`](<>)\n- the `e` team"
+                "\n\n**Removed, then requested review** from:\n- the `q` team\n"
+                "- the `r` team"
+            ),
         ),
     ],
 )
